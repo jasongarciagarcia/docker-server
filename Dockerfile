@@ -18,6 +18,6 @@ RUN service apache2 restart
 
 COPY ./proyecto /var/www/html  
 
-RUN cd /var/www/html && composer install && chmod 777 -R  /var/www/html/storage
+RUN cd /var/www/html && composer install && chmod 777 -R  /var/www/html/storage && chmod 777 -R /var/www/html/bootstrap/cache
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
