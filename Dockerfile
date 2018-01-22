@@ -1,11 +1,9 @@
 FROM ubuntu:16.04
 
-
 RUN apt-get update && \
 	apt-get install -y apache2 apt-utils && \
 	apt-get install -y php php-mysql php-mcrypt php-zip php-curl php-gd php-mbstring php-xml && \
 	apt-get install -y libapache2-mod-php composer
-
 
 RUN apt-get install -y curl  && \
 	apt-get install -y vim
@@ -17,5 +15,9 @@ EXPOSE 80
 ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN service apache2 restart
+
+RUN cd /var/www/html && composer install && chmod 777 -R  /var/www/html/storage
+
+COPY ./proyecto /var/www/html  
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
