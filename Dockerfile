@@ -16,8 +16,8 @@ ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN service apache2 restart
 
-RUN cd /var/www/html && composer install && chmod 777 -R  /var/www/html/storage
-
 COPY ./proyecto /var/www/html  
+
+RUN cd /var/www/html && composer install && chmod 777 -R  /var/www/html/storage
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
